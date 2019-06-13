@@ -6,16 +6,13 @@ const routes = require('./routes.js');
 
 const ip = config.SERVER;
 const port = config.PORT;
-// const db_file = config.DB_FILE;
 
 const server = jsonServer.create();
 const router = jsonServer.router(db);
-//根据db.json文件自动生成路由规则
-//const router = jsonServer.router(path.join(__dirname, config.DB_FILE));
+
 //中间件
 const middlewares = jsonServer.defaults();
 const rewriter = jsonServer.rewriter(routes)
-
 server.use(middlewares);
 
 server.use(rewriter) // 注意：rewriter 的設定一定要在 router 設定之前
